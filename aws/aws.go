@@ -28,6 +28,7 @@ type Region struct {
 	SQSEndpoint          string
 	IAMEndpoint          string
 	Sign                 Signer // Method which will be used to sign requests.
+    Proxy                string // Optional: 
 }
 
 var USEast = Region{
@@ -42,6 +43,7 @@ var USEast = Region{
 	"https://sqs.us-east-1.amazonaws.com",
 	"https://iam.amazonaws.com",
 	SignV2,
+    "",
 }
 
 var USWest = Region{
@@ -56,6 +58,7 @@ var USWest = Region{
 	"https://sqs.us-west-1.amazonaws.com",
 	"https://iam.amazonaws.com",
 	SignV2,
+    "",
 }
 
 var USWest2 = Region{
@@ -70,6 +73,7 @@ var USWest2 = Region{
 	"https://sqs.us-west-2.amazonaws.com",
 	"https://iam.amazonaws.com",
 	SignV2,
+    "",
 }
 
 var EUWest = Region{
@@ -84,6 +88,7 @@ var EUWest = Region{
 	"https://sqs.eu-west-1.amazonaws.com",
 	"https://iam.amazonaws.com",
 	SignV2,
+    "",
 }
 
 var APSoutheast = Region{
@@ -98,6 +103,7 @@ var APSoutheast = Region{
 	"https://sqs.ap-southeast-1.amazonaws.com",
 	"https://iam.amazonaws.com",
 	SignV2,
+    "",
 }
 
 var APSoutheast2 = Region{
@@ -112,6 +118,7 @@ var APSoutheast2 = Region{
 	"https://sqs.ap-southeast-2.amazonaws.com",
 	"https://iam.amazonaws.com",
 	SignV2,
+    "",
 }
 
 var APNortheast = Region{
@@ -126,6 +133,7 @@ var APNortheast = Region{
 	"https://sqs.ap-northeast-1.amazonaws.com",
 	"https://iam.amazonaws.com",
 	SignV2,
+    "",
 }
 
 var SAEast = Region{
@@ -140,6 +148,7 @@ var SAEast = Region{
 	"https://sqs.sa-east-1.amazonaws.com",
 	"https://iam.amazonaws.com",
 	SignV2,
+    "",
 }
 
 var CNNorth = Region{
@@ -154,6 +163,7 @@ var CNNorth = Region{
 	"https://sqs.cn-north-1.amazonaws.com.cn",
 	"https://iam.amazonaws.com.cn",
 	SignV4Factory("cn-north-1"),
+    "",
 }
 
 var Regions = map[string]Region{

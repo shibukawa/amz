@@ -23,7 +23,7 @@ import (
 	"strings"
 	"time"
 
-	"gopkg.in/amz.v1/aws"
+	"github.com/shibukawa/amz/aws"
 )
 
 const debug = false
@@ -488,7 +488,23 @@ func (s3 *S3) run(req *request) (*http.Response, error) {
 		hreq.Body = ioutil.NopCloser(req.payload)
 	}
 
-	hresp, err := http.DefaultClient.Do(&hreq)
+    client := http.DefaultClient
+    if s3.Region.Proxy != "" {
+        urlObj := url.URL{}
+        urlProxy, err := urlObj.Parse(s3.Region.Proxy)
+        if err != nil {
+		    log.Printf("Proxy %s is invalid format. Proxy setting is ignored.\n", s3.Region.Proxy)
+        } else {
+            client = &http.Client{}
+            transport := &http.Transport{}
+            transport.Proxy = http.ProxyURL(urlProxy)
+            // setting for ssl
+            // transport.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
+            client.Transport = transport
+        }
+    }
+
+	hresp, err := client.Do(&hreq)
 	if err != nil {
 		return nil, err
 	}
